@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const params = useSearchParams();
   const orderId = params.get('orderId') ?? '';
   const [status, setStatus] = useState<'preview' | 'paid' | 'loading'>('loading');
@@ -70,5 +70,13 @@ export default function CheckoutPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<main style={{ padding: 24 }}>Laden...</main>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }

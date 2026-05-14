@@ -11,7 +11,7 @@ async function verifyAndMarkPaid(orderId: string) {
 
   const mollie = createMollieClient({ apiKey: process.env.MOLLIE_API_KEY });
   const payment = await mollie.payments.get(order.paymentId);
-  if (payment.isPaid()) {
+  if (payment.status === 'paid') {
     return updateOrder(orderId, { status: 'paid' });
   }
   return order;

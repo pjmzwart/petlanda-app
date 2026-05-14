@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     });
 
     await updateOrder(order.id, { paymentId: payment.id });
-    return NextResponse.json({ checkoutUrl: payment.getCheckoutUrl() });
+    return NextResponse.json({ checkoutUrl: (payment as any)._links.checkout.href });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Mollie betaling kon niet worden aangemaakt.' }, { status: 500 });

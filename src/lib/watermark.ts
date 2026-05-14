@@ -1,0 +1,26 @@
+import sharp from 'sharp';
+
+export async function makeWatermarkedPreview(inputBuffer: Buffer, watermarkText = 'PREVIEW') {
+  const meta = await sharp(inputBuffer).metadata();
+  const width = meta.width ?? 1024;
+  const height = meta.height ?? 1024;
+  const fontSize = Math.max(42, Math.round(width / 10));
+
+  const svg = `
+  <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="transparent"/>
+    <g transform="rotate(-28 ${width / 2} ${height / 2})">
+      <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, Helvetica, sans-serif" font-size="${fontSize}"
+        font-weight="800" fill="rgba(255,255,255,0.55)" stroke="rgba(0,0,0,0.25)" stroke-width="2">
+        ${watermarkText}
+      </text>
+    </g>
+  </svg>`;
+
+  return sharp(inputBuffer)
+    .resize({ width: 900, withoutEnlargement: true })
+    .composite([{ input: Buffer.from(svg), gravity: 'center' }])
+    .jpeg({ quality: 72 })
+    .toBuffer();
+}

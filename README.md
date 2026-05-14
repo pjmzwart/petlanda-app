@@ -1,23 +1,18 @@
-# PetLanda AI Pet Art App
+# PetLanda AI App
 
-This version uses **fal.ai** for AI image generation.
+International PetLanda app using fal.ai, Mollie, and Vercel Blob.
 
-## Vercel environment variables
+Required Vercel Environment Variables:
 
-Add these in Vercel → Project → Settings → Environment Variables:
+- `FAL_KEY`
+- `MOLLIE_API_KEY`
+- `NEXT_PUBLIC_BASE_URL`
+- `BLOB_READ_WRITE_TOKEN`
 
-- `FAL_KEY` = your fal.ai API key
-- `MOLLIE_API_KEY` = your Mollie API key
-- `NEXT_PUBLIC_BASE_URL` = your Vercel app URL, for example `https://petlanda-app.vercel.app`
-- `PRODUCT_PRICE_EUR` = `4.99`
-- `WATERMARK_TEXT` = `PETLANDA PREVIEW`
+Optional:
 
-Important: use `FAL_KEY`, not `OPENAI_API_KEY`. The app includes a temporary fallback for `OPENAI_API_KEY`, but `FAL_KEY` is the clean setup.
+- `PRODUCT_PRICE_EUR=4.99`
+- `PRODUCT_NAME=PetLanda 5 HD AI pet artworks`
+- `WATERMARK_TEXT=PETLANDA PREVIEW`
 
-## Flow
-
-1. Customer uploads a pet photo.
-2. Customer chooses a style.
-3. The app generates 1 free watermarked preview with fal.ai.
-4. After Mollie payment, the app generates 5 HD images.
-5. Customer downloads the ZIP package.
+Important: Vercel serverless functions cannot reliably store generated images on local disk. This version uses Vercel Blob so previews, orders, uploads, and paid HD files remain available between API calls.

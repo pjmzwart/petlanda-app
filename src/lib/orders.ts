@@ -15,7 +15,7 @@ export type OrderRecord = {
   hdFiles: string[];
 };
 
-const baseDir = path.join(process.cwd(), 'storage', 'orders');
+const baseDir = path.join('/tmp', 'storage', 'orders');
 
 export async function ensureOrderDir(orderId: string) {
   const dir = path.join(baseDir, orderId);

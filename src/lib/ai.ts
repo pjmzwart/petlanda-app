@@ -45,7 +45,7 @@ async function generateFalImage(params: {
   const result = await fal.subscribe('fal-ai/flux-1/schnell/redux', {
     input: {
       image_url: dataUriFromBuffer(params.inputBuffer, params.inputMimeType || 'image/png'),
-      prompt: `${buildPrompt(params.styleId)} ${params.variant}`,
+      guidance_prompt: `${buildPrompt(params.styleId)} ${params.variant}`,
       image_size: params.imageSize || 'square',
       num_images: 1,
       num_inference_steps: 4,

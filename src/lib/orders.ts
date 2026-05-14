@@ -1,6 +1,7 @@
 import { put, list } from '@vercel/blob';
 
 export type OrderStatus = 'preview' | 'generating' | 'paid';
+export type PackageType = 'basic' | 'premium';
 
 export type OrderRecord = {
   id: string;
@@ -8,6 +9,8 @@ export type OrderRecord = {
   createdAt: string;
   status: OrderStatus;
   paymentId?: string;
+  packageType?: PackageType;
+  packageImageCount?: number;
   inputFile: string;
   inputMimeType?: string;
   previewFiles: string[];

@@ -26,12 +26,12 @@ function CheckoutContent() {
     setStatus(data.status === 'paid' ? 'paid' : data.status === 'generating' ? 'generating' : 'preview');
   }
 
-  async function pay() {
+  async function pay(packageType: 'basic' | 'premium') {
     setError('');
     const res = await fetch('/api/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orderId })
+      body: JSON.stringify({ orderId, packageType })
     });
     const data = await res.json();
     if (!res.ok) {
@@ -60,7 +60,7 @@ function CheckoutContent() {
             Love the look?<br />Unlock your HD pet art pack
           </h1>
           <p style={{ fontSize: 19, maxWidth: 760, margin: '20px auto 0', opacity: 0.74, lineHeight: 1.55 }}>
-            View your watermarked preview below. After payment, PetLanda creates 5 high-resolution artworks and delivers them as a ZIP download.
+            View your watermarked preview below. Choose your package. After payment, PetLanda creates your high-resolution artwork pack and delivers it as a ZIP download.
           </p>
         </section>
 
@@ -82,9 +82,26 @@ function CheckoutContent() {
               Download my HD ZIP
             </a>
           ) : (
-            <button onClick={pay} style={{ border: 0, borderRadius: 999, padding: '18px 34px', fontSize: 18, fontWeight: 900, background: 'linear-gradient(135deg, #ff8fab, #8ec5ff)', color: 'white', boxShadow: '0 16px 38px rgba(255,143,171,.32)' }}>
-              Unlock 5 HD artworks
-            </button>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18, maxWidth: 760, margin: '0 auto' }}>
+              <div style={{ background: 'rgba(255,255,255,.82)', border: '1px solid rgba(255,255,255,.9)', borderRadius: 28, padding: 24, boxShadow: '0 16px 45px rgba(80,60,90,.10)' }}>
+                <div style={{ fontSize: 15, fontWeight: 900, color: '#ff6f91', marginBottom: 8 }}>Basic Pack</div>
+                <div style={{ fontSize: 34, fontWeight: 950, marginBottom: 8 }}>€7.99</div>
+                <p style={{ opacity: .72, lineHeight: 1.45, margin: '0 0 18px' }}>5 HD AI artworks, no watermark, delivered as a ZIP download.</p>
+                <button onClick={() => pay('basic')} style={{ width: '100%', border: 0, borderRadius: 999, padding: '16px 22px', fontSize: 16, fontWeight: 900, background: 'linear-gradient(135deg, #ff8fab, #8ec5ff)', color: 'white', boxShadow: '0 16px 38px rgba(255,143,171,.32)' }}>
+                  Unlock 5 HD artworks
+                </button>
+              </div>
+
+              <div style={{ position: 'relative', background: 'rgba(255,255,255,.92)', border: '2px solid rgba(255,143,171,.55)', borderRadius: 28, padding: 24, boxShadow: '0 20px 55px rgba(255,143,171,.18)' }}>
+                <div style={{ position: 'absolute', top: -13, left: '50%', transform: 'translateX(-50%)', background: '#ff8fab', color: 'white', borderRadius: 999, padding: '6px 14px', fontSize: 12, fontWeight: 900 }}>Most popular</div>
+                <div style={{ fontSize: 15, fontWeight: 900, color: '#8a7dff', marginBottom: 8 }}>Premium Pack</div>
+                <div style={{ fontSize: 34, fontWeight: 950, marginBottom: 8 }}>€14.99</div>
+                <p style={{ opacity: .72, lineHeight: 1.45, margin: '0 0 18px' }}>10 HD artworks, extra polish, mobile wallpaper-friendly compositions and print-ready detail.</p>
+                <button onClick={() => pay('premium')} style={{ width: '100%', border: 0, borderRadius: 999, padding: '16px 22px', fontSize: 16, fontWeight: 900, background: 'linear-gradient(135deg, #ff8fab, #8ec5ff)', color: 'white', boxShadow: '0 16px 38px rgba(255,143,171,.32)' }}>
+                  Unlock Premium Pack
+                </button>
+              </div>
+            </div>
           )}
           <div style={{ marginTop: 14 }}>
             <button onClick={checkStatus} style={{ background: 'transparent', border: 0, textDecoration: 'underline', opacity: 0.65 }}>

@@ -20,7 +20,7 @@ function dataUriFromBuffer(buffer: Buffer, mimeType = 'image/png') {
 }
 
 function buildPrompt(styleId: string) {
-  return `${getStylePrompt(styleId)} Square composition, high-quality pet artwork, clean background, no text, no watermark, no logo, no extra animals.`;
+  return `Keep the same pet identity from the uploaded photo: same breed, face shape, fur color, markings, ears, eyes and expression. Transform only the artistic style. ${getStylePrompt(styleId)} Square composition, high-quality pet artwork, clean background, no text, no watermark, no logo, no extra animals.`;
 }
 
 async function downloadImage(url: string) {
@@ -89,7 +89,9 @@ export async function generateOneWatermarkedPreview(params: {
 export async function generatePaidHdPackage(orderId: string) {
   const order = await readOrder(orderId);
 
-  if (order.hdFiles.length >= 5) {
+  const targetCount = order.packageImageCount || (order.packageType === 'premium' ? 10 : 5);
+
+  if (order.hdFiles.length >= targetCount) {
     return order;
   }
 
@@ -98,12 +100,12 @@ export async function generatePaidHdPackage(orderId: string) {
   const inputBuffer = await readOrderFile(order.id, order.inputFile);
   const hdFiles: string[] = [];
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= targetCount; i++) {
     const hdBuffer = await generateFalImage({
       inputBuffer,
       inputMimeType: order.inputMimeType || 'image/png',
       styleId: order.styleId,
-      variant: `Paid HD version ${i}: create a different but consistent variation with a new pose, lighting, expression, or background detail while keeping the same pet recognizable. Premium quality, gift-worthy result.`,
+      variant: `Paid HD version ${i}: create a beautiful variation while keeping the same pet highly recognizable. Preserve the same face, fur pattern, markings, ears and eye shape. Premium quality, gift-worthy result.${order.packageType === 'premium' ? ' Include premium polish, mobile wallpaper-friendly composition and print-ready detail.' : ''}`,
       imageSize: 'square_hd',
       outputFormat: 'png'
     });

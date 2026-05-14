@@ -15,7 +15,8 @@ async function verifyAndGenerateIfPaid(orderId: string) {
   const payment = await mollie.payments.get(order.paymentId);
 
   if (payment.status === 'paid') {
-    if (order.hdFiles.length >= 5 && order.status === 'paid') return order;
+    const targetCount = order.packageImageCount || (order.packageType === 'premium' ? 10 : 5);
+    if (order.hdFiles.length >= targetCount && order.status === 'paid') return order;
     return generatePaidHdPackage(orderId);
   }
 
@@ -26,7 +27,8 @@ export async function GET(req: NextRequest) {
   const orderId = req.nextUrl.searchParams.get('orderId');
   if (!orderId) return NextResponse.json({ error: 'orderId is missing.' }, { status: 400 });
   const order = await verifyAndGenerateIfPaid(orderId);
-  return NextResponse.json({ status: order.status, hdReady: order.hdFiles.length >= 5 });
+  const targetCount = order.packageImageCount || (order.packageType === 'premium' ? 10 : 5);
+  return NextResponse.json({ status: order.status, hdReady: order.hdFiles.length >= targetCount, packageType: order.packageType || 'basic', imageCount: targetCount });
 }
 
 export async function POST(req: NextRequest) {

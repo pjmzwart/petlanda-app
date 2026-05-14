@@ -8,7 +8,9 @@ export async function GET(_req: NextRequest, context: { params: { orderId: strin
   const { orderId } = context.params;
   const order = await readOrder(orderId);
 
-  if (order.status !== 'paid' || order.hdFiles.length < 5) {
+  const targetCount = order.packageImageCount || (order.packageType === 'premium' ? 10 : 5);
+
+  if (order.status !== 'paid' || order.hdFiles.length < targetCount) {
     return NextResponse.json({ error: 'Your HD pack is not ready yet or has not been paid.' }, { status: 202 });
   }
 

@@ -40,6 +40,7 @@ export async function saveOrderFile(orderId: string, fileName: string, data: Buf
   await put(filePath(orderId, fileName), data, {
     access: 'public',
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType
   });
   return fileName;
@@ -60,6 +61,7 @@ export async function saveOrder(order: OrderRecord) {
   await put(filePath(order.id, 'order.json'), JSON.stringify(order, null, 2), {
     access: 'public',
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: 'application/json'
   });
 }

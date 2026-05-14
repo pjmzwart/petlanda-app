@@ -21,23 +21,19 @@ function dataUriFromBuffer(buffer: Buffer, mimeType = 'image/png') {
 
 function buildPrompt(styleId: string) {
   return `
-Transform THIS EXACT pet from the uploaded photo into premium artwork.
+Create a beautiful artistic version of the pet in the uploaded photo.
 
-CRITICAL IDENTITY RULES:
-- Keep the SAME animal identity.
-- Keep the SAME breed and body type.
-- Keep the SAME fur color. If the pet is black, it must remain black.
-- Keep the SAME face shape, muzzle, nose, ears, eyes and expression.
-- Keep the SAME markings, collar details and recognizable features when possible.
-- Keep the SAME pose and camera angle as much as possible.
-- Do NOT create a different dog or cat.
-- Do NOT turn a black dog into a brown, white or fluffy dog.
-- Do NOT invent a new breed.
-- Only change the artistic style and polish.
+BALANCE:
+- Keep the same pet recognizable.
+- Preserve the pet's breed, main fur color, face shape, ears, nose, eyes, markings, collar and expression.
+- Keep the same pose or a very similar pose when possible.
+- Apply the selected art style clearly, but do not replace the pet with a different animal.
+- If the pet is a black dog, it should remain a black dog.
+- Do not invent a different breed or a completely different face.
 
 Style direction: ${getStylePrompt(styleId)}
 
-High-quality pet artwork, charming, emotional, gift-worthy, no text, no logo, no watermark, no extra animals.
+Premium pet portrait, polished, warm, charming, emotional, gift-worthy, clean composition, no text, no logo, no watermark, no extra animals.
 `;
 }
 
@@ -66,9 +62,9 @@ async function generateFalImage(params: {
     num_images: 1,
     num_inference_steps: 30,
     output_format: params.outputFormat || 'jpeg',
-    guidance_scale: 2.8,
-    // Lower strength keeps the uploaded pet more recognizable.
-    strength: 0.28,
+    guidance_scale: 4,
+    // Balanced: visible style transformation while keeping the pet recognizable.
+    strength: 0.55,
     enable_safety_checker: true
   } as any;
 
@@ -95,7 +91,7 @@ export async function generateOneWatermarkedPreview(params: {
     inputBuffer: params.inputBuffer,
     inputMimeType: params.inputMimeType,
     styleId: params.styleId,
-    variant: 'Create one preview. Keep the pet highly recognizable. Preserve fur color, face, ears, eyes, markings and expression. Apply the selected style subtly.',
+    variant: 'Create one preview. Keep the pet recognizable, but clearly apply the selected art style. Preserve fur color, face, ears, eyes, markings and expression.',
     imageSize: 'square',
     outputFormat: 'jpeg'
   });
@@ -125,7 +121,7 @@ export async function generatePaidHdPackage(orderId: string) {
       inputBuffer,
       inputMimeType: order.inputMimeType || 'image/png',
       styleId: order.styleId,
-      variant: `Paid HD version ${i}: keep this exact pet highly recognizable. Preserve fur color, face shape, muzzle, ears, eye shape, markings, collar details and expression. Create a beautiful polished variation without changing breed or identity.${order.packageType === 'premium' ? ' Include premium polish, mobile wallpaper-friendly composition and print-ready detail.' : ''}`,
+      variant: `Paid HD version ${i}: create a polished artistic variation of this same pet. Keep the pet recognizable, preserve fur color, face shape, muzzle, ears, eye shape, markings, collar details and expression, but apply the selected style clearly.${order.packageType === 'premium' ? ' Include premium polish, mobile wallpaper-friendly composition and print-ready detail.' : ''}`,
       imageSize: 'square_hd',
       outputFormat: 'png'
     });

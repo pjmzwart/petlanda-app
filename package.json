@@ -1,6 +1,6 @@
 {
   "name": "petlanda-app",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "engines": {
     "node": "20.x"
@@ -13,13 +13,13 @@
   "dependencies": {
     "@fal-ai/client": "latest",
     "@mollie/api-client": "latest",
+    "@vercel/blob": "latest",
     "jszip": "^3.10.1",
     "nanoid": "latest",
     "next": "14.2.15",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "latest",
-    "@vercel/blob": "latest"
+    "sharp": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",

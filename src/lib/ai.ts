@@ -1,5 +1,5 @@
 import { fal } from '@fal-ai/client';
-import { getStylePrompt } from '@/lib/styles';
+import { getSceneVariation, getStylePrompt } from '@/lib/styles';
 import { makeWatermarkedPreview } from '@/lib/watermark';
 import { readOrder, readOrderFile, saveOrderFile, updateOrder } from '@/lib/orders';
 
@@ -22,7 +22,9 @@ function dataUriFromBuffer(buffer: Buffer, mimeType = 'image/png') {
 function buildPrompt(sceneId: string, variant: string) {
   return `${getStylePrompt(sceneId)}
 
-Important: use the uploaded photo as the identity reference. This must remain the same specific pet, not a new dog/cat/bird/rabbit. Preserve the pet's face, expression, eyes, nose, ears, fur color, body shape, collar/markings and personality as much as possible. Change the scene, clothing, props and environment to match the chosen concept. Natural realistic photo-editing result. No text, no logo, no watermark. ${variant}`;
+CRITICAL: This is a photo edit of the uploaded pet, not a new pet generation. Keep the same recognizable animal identity and personality. Change the background, scene, props, lighting, outfit and composition to match the chosen concept. If a glass is raised, make the paw gesture believable and animal-like, not a human hand. Natural photorealistic result. No text, no logo, no watermark.
+
+Variation instruction: ${variant}`;
 }
 
 async function downloadImage(url: string) {
@@ -105,7 +107,7 @@ export async function generatePaidHdPackage(orderId: string) {
       inputBuffer,
       inputMimeType: order.inputMimeType || 'image/png',
       styleId: order.styleId,
-      variant: `Paid HD version ${i}. Create a polished high-resolution variation in the same chosen scene. Keep the exact pet recognizable; vary the camera angle, lighting or composition slightly while preserving identity.${order.packageType === 'premium' ? ' Premium quality, wallpaper-friendly and print-ready detail.' : ''}`,
+      variant: `Paid HD version ${i}. Create a unique image, not a repeat. Use this specific variation: ${getSceneVariation(order.styleId, i - 1)}. Keep the exact pet recognizable. Vary the restaurant/scene setting, camera angle, lighting, composition, props, pose or mood so every paid image feels different.${order.packageType === 'premium' ? ' Premium quality, wallpaper-friendly and print-ready detail.' : ''}`,
       outputFormat: 'png'
     });
 

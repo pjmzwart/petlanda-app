@@ -19,22 +19,10 @@ function dataUriFromBuffer(buffer: Buffer, mimeType = 'image/png') {
   return `data:${mimeType};base64,${buffer.toString('base64')}`;
 }
 
-function buildPrompt(styleId: string) {
-  return `
-Create a beautiful artistic version of the pet in the uploaded photo.
+function buildPrompt(sceneId: string, variant: string) {
+  return `${getStylePrompt(sceneId)}
 
-BALANCE:
-- Keep the same pet recognizable.
-- Preserve the pet's breed, main fur color, face shape, ears, nose, eyes, markings, collar and expression.
-- Keep the same pose or a very similar pose when possible.
-- Apply the selected art style clearly, but do not replace the pet with a different animal.
-- If the pet is a black dog, it should remain a black dog.
-- Do not invent a different breed or a completely different face.
-
-Style direction: ${getStylePrompt(styleId)}
-
-Premium pet portrait, polished, warm, charming, emotional, gift-worthy, clean composition, no text, no logo, no watermark, no extra animals.
-`;
+Important: use the uploaded photo as the identity reference. This must remain the same specific pet, not a new dog/cat/bird/rabbit. Preserve the pet's face, expression, eyes, nose, ears, fur color, body shape, collar/markings and personality as much as possible. Change the scene, clothing, props and environment to match the chosen concept. Natural realistic photo-editing result. No text, no logo, no watermark. ${variant}`;
 }
 
 async function downloadImage(url: string) {
@@ -50,26 +38,23 @@ async function generateFalImage(params: {
   inputMimeType?: string;
   styleId: string;
   variant: string;
-  imageSize?: 'square' | 'square_hd';
   outputFormat?: 'jpeg' | 'png';
 }) {
   configureFal();
 
-  const input = {
-    image_url: dataUriFromBuffer(params.inputBuffer, params.inputMimeType || 'image/png'),
-    prompt: `${buildPrompt(params.styleId)} ${params.variant}`,
-    image_size: params.imageSize || 'square',
-    num_images: 1,
-    num_inference_steps: 30,
-    output_format: params.outputFormat || 'jpeg',
-    guidance_scale: 4,
-    // Balanced: visible style transformation while keeping the pet recognizable.
-    strength: 0.55,
-    enable_safety_checker: true
-  } as any;
+  const model = process.env.FAL_MODEL || 'fal-ai/flux-pro/kontext';
 
-  const result = await fal.subscribe('fal-ai/flux/dev/image-to-image' as any, {
-    input,
+  const result = await fal.subscribe(model as any, {
+    input: {
+      image_url: dataUriFromBuffer(params.inputBuffer, params.inputMimeType || 'image/png'),
+      prompt: buildPrompt(params.styleId, params.variant),
+      guidance_scale: Number(process.env.FAL_GUIDANCE_SCALE || 3.5),
+      num_images: 1,
+      output_format: params.outputFormat || 'jpeg',
+      safety_tolerance: String(process.env.FAL_SAFETY_TOLERANCE || '2'),
+      enhance_prompt: true,
+      aspect_ratio: '1:1'
+    } as any,
     logs: false
   } as any);
 
@@ -91,8 +76,7 @@ export async function generateOneWatermarkedPreview(params: {
     inputBuffer: params.inputBuffer,
     inputMimeType: params.inputMimeType,
     styleId: params.styleId,
-    variant: 'Create one preview. Keep the pet recognizable, but clearly apply the selected art style. Preserve fur color, face, ears, eyes, markings and expression.',
-    imageSize: 'square',
+    variant: 'Create one preview image. Make the scene change clearly visible, but keep the pet identity strongly recognizable.',
     outputFormat: 'jpeg'
   });
 
@@ -121,8 +105,7 @@ export async function generatePaidHdPackage(orderId: string) {
       inputBuffer,
       inputMimeType: order.inputMimeType || 'image/png',
       styleId: order.styleId,
-      variant: `Paid HD version ${i}: create a polished artistic variation of this same pet. Keep the pet recognizable, preserve fur color, face shape, muzzle, ears, eye shape, markings, collar details and expression, but apply the selected style clearly.${order.packageType === 'premium' ? ' Include premium polish, mobile wallpaper-friendly composition and print-ready detail.' : ''}`,
-      imageSize: 'square_hd',
+      variant: `Paid HD version ${i}. Create a polished high-resolution variation in the same chosen scene. Keep the exact pet recognizable; vary the camera angle, lighting or composition slightly while preserving identity.${order.packageType === 'premium' ? ' Premium quality, wallpaper-friendly and print-ready detail.' : ''}`,
       outputFormat: 'png'
     });
 

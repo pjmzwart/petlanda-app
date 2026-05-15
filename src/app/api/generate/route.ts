@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 
     const form = await req.formData();
     const image = form.get('image');
-    const styleId = String(form.get('styleId') ?? 'cartoon');
+    const styleId = String(form.get('styleId') ?? 'luxury-restaurant');
 
     if (!(image instanceof File)) {
       return NextResponse.json({ error: 'No image received.' }, { status: 400 });

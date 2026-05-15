@@ -1,31 +1,43 @@
-# PetLanda AI App
+# PetLanda — Scene Transformation Edition
 
-International PetLanda app for AI pet art.
+Deze versie is gebouwd voor het doel: **plaats hetzelfde herkenbare huisdier in magische scenes**.
 
-## Included
-- English pastel interface
-- fal.ai image generation
-- 1 free watermarked preview
-- Basic Pack: €7.99 for 5 HD images
-- Premium Pack: €14.99 for 10 HD images + extra polish
-- Mollie API payments created dynamically in code, no manual payment links needed
-- Vercel Blob storage for previews and downloads
-- ZIP download after payment
+## Belangrijkste wijzigingen
 
-## Required Vercel Environment Variables
+- Nieuwe interface met voorbeeld-scenes
+- Scene-keuze in plaats van alleen stijl-keuze
+- fal.ai FLUX Kontext als standaard model
+- Betere identity-preserving prompts
+- Basic/Premium checkout blijft aanwezig
+- Mollie API betaling zonder vaste payment method
+- Vercel Blob opslag met overwrite-fix
+- Duidelijk watermerk op previews
+
+## Environment variables in Vercel
 
 ```env
-FAL_KEY=your_fal_ai_key
-MOLLIE_API_KEY=live_xxxxx_or_test_xxxxx
-BLOB_READ_WRITE_TOKEN=vercel_blob_rw_xxxxx
-NEXT_PUBLIC_BASE_URL=https://your-vercel-domain.vercel.app
-BASIC_PRICE_EUR=7.99
-PREMIUM_PRICE_EUR=14.99
-WATERMARK_TEXT=PETLANDA PREVIEW
+FAL_KEY=...
+MOLLIE_API_KEY=live_...
+BLOB_READ_WRITE_TOKEN=...
+NEXT_PUBLIC_BASE_URL=https://jouw-vercel-url.vercel.app
 ```
 
-After changing environment variables, redeploy the project.
+Optioneel:
 
-## Mollie
-Do not create manual payment links. The app creates Mollie payments via the API.
-Make sure at least one payment method such as iDEAL is active in your Mollie website profile.
+```env
+FAL_MODEL=fal-ai/flux-pro/kontext
+FAL_GUIDANCE_SCALE=3.5
+WATERMARK_TEXT=PETLANDA PREVIEW
+BASIC_PRICE_EUR=7.99
+PREMIUM_PRICE_EUR=14.99
+```
+
+## Modelkeuze
+
+Standaard gebruikt deze app:
+
+```text
+fal-ai/flux-pro/kontext
+```
+
+Dit model is bedoeld voor image editing / scene transformation met een referentieafbeelding.

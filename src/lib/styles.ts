@@ -1,51 +1,87 @@
 export const PET_STYLES = [
   {
-    id: 'cartoon',
-    name: 'Cartoon Joy',
-    desc: 'Bright, playful and full of character',
-    prompt: 'Transform this pet into a bright, playful cartoon portrait with expressive eyes, soft rounded shapes, cheerful colors, and a clean premium illustration look. Keep the pet recognizable from the uploaded photo.'
-  },
-  {
-    id: 'cute',
-    name: 'Cute Look',
-    desc: 'Soft, sweet and extra adorable',
-    prompt: 'Create an extra cute, soft and heartwarming portrait of this pet with gentle lighting, adorable expression, cozy details, pastel colors, and premium digital art quality. Keep the pet recognizable from the uploaded photo.'
-  },
-  {
-    id: 'nature',
-    name: 'Nature Pet',
-    desc: 'Fresh flowers, leaves and sunshine',
-    prompt: 'Create a beautiful nature-inspired portrait of this pet surrounded by soft flowers, leaves, warm sunlight, fresh outdoor colors, and a peaceful premium illustration style. Keep the pet recognizable from the uploaded photo.'
-  },
-  {
-    id: 'cozy',
-    name: 'Cozy Home',
-    desc: 'Warm blanket, soft light and calm vibes',
-    prompt: 'Create a warm cozy portrait of this pet in a soft home setting with gentle blankets, warm window light, calm atmosphere, and premium lifestyle illustration quality. Keep the pet recognizable from the uploaded photo.'
-  },
-  {
-    id: 'royal',
-    name: 'Royal Pet',
-    desc: 'A noble king or queen portrait',
-    prompt: 'Transform this pet into a royal portrait with elegant clothing, luxurious details, warm studio lighting, rich textures, and premium digital art quality. Keep the pet recognizable from the uploaded photo.'
-  },
-  {
-    id: 'fantasy',
-    name: 'Fantasy Friend',
-    desc: 'Magical, dreamy and fairytale-like',
-    prompt: 'Create a magical fantasy portrait of this pet with dreamy light, tiny sparkles, soft clouds, fairytale colors, and charming premium digital art quality. Keep the pet recognizable from the uploaded photo.'
+    id: 'luxury-restaurant',
+    name: 'Luxury Restaurant',
+    desc: 'Fine dining, candlelight and a raised glass',
+    icon: '🍷',
+    prompt: 'Place the pet from the photo in a luxurious fine dining restaurant. The pet is sitting at a beautiful table with warm candlelight and elegant chandeliers, raising a glass of red wine in a funny but realistic way. Keep the pet clearly recognizable.'
   },
   {
     id: 'astronaut',
-    name: 'Space Explorer',
-    desc: 'A cute pet astronaut adventure',
-    prompt: 'Transform this pet into a cute astronaut wearing a small space suit, with stars, planets, cinematic lighting, and premium poster-style digital art. Keep the pet recognizable from the uploaded photo.'
+    name: 'Astronaut',
+    desc: 'A space adventure on the moon',
+    icon: '🚀',
+    prompt: 'Place the pet from the photo in a real astronaut suit on the moon, with Earth visible in the background. Cinematic space lighting, realistic but magical. Keep the pet clearly recognizable.'
   },
   {
-    id: 'christmas',
-    name: 'Christmas Card',
-    desc: 'Warm, festive and gift-ready',
-    prompt: 'Create a cozy Christmas card portrait of this pet with warm lights, soft snow, festive decorations, a sweet expression, and premium illustration quality. Keep the pet recognizable from the uploaded photo.'
+    id: 'king-throne',
+    name: 'King on Throne',
+    desc: 'Royal palace portrait',
+    icon: '👑',
+    prompt: 'Place the pet from the photo on a royal throne in a grand palace. Add a small crown and elegant royal details. Warm dramatic lighting. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'beach-vacation',
+    name: 'Beach Vacation',
+    desc: 'Sunny tropical holiday scene',
+    icon: '🏖️',
+    prompt: 'Place the pet from the photo on a sunny tropical beach vacation with soft sand, blue sea, palm trees and warm sunlight. Happy vacation feeling. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'cozy-christmas',
+    name: 'Cozy Christmas',
+    desc: 'Warm festive holiday scene',
+    icon: '🎄',
+    prompt: 'Place the pet from the photo in a cozy Christmas living room with warm fairy lights, a Christmas tree, soft blankets and festive decorations. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'superhero',
+    name: 'Superhero',
+    desc: 'Hero pose on a city rooftop',
+    icon: '🦸',
+    prompt: 'Place the pet from the photo as a superhero on a cinematic city rooftop at night, wearing a tasteful cape, heroic lighting, movie poster feeling. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'paris-cafe',
+    name: 'Paris Café',
+    desc: 'Charming French terrace',
+    icon: '☕',
+    prompt: 'Place the pet from the photo at a charming Paris café terrace with croissants, warm morning light, flowers and a soft view of the Eiffel Tower in the distance. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'chef-kitchen',
+    name: 'Chef in Kitchen',
+    desc: 'Funny gourmet chef scene',
+    icon: '👨‍🍳',
+    prompt: 'Place the pet from the photo in a professional kitchen as a cute chef wearing a chef hat, surrounded by tasteful cooking details. Funny, premium and realistic. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'yacht-adventure',
+    name: 'Yacht Adventure',
+    desc: 'Luxury yacht at sea',
+    icon: '🛥️',
+    prompt: 'Place the pet from the photo on a luxury yacht at sea with blue water, sunshine and elegant holiday atmosphere. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'medieval-knight',
+    name: 'Medieval Knight',
+    desc: 'Castle, armor and fantasy light',
+    icon: '⚔️',
+    prompt: 'Place the pet from the photo as a noble medieval knight in front of a castle, wearing tasteful light armor, cinematic fantasy lighting. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'business-meeting',
+    name: 'Business Meeting',
+    desc: 'Serious pet at the boardroom table',
+    icon: '💼',
+    prompt: 'Place the pet from the photo in a funny professional business meeting, sitting at a boardroom table with documents, laptop and serious executive atmosphere. Keep the pet clearly recognizable.'
+  },
+  {
+    id: 'wizard-school',
+    name: 'Wizard School',
+    desc: 'Magical school portrait',
+    icon: '🪄',
+    prompt: 'Place the pet from the photo in a magical wizard school, with warm candlelight, old books, floating sparkles and a cozy fantasy atmosphere. Keep the pet clearly recognizable.'
   }
 ];
 

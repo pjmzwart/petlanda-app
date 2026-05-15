@@ -1,3 +1,4 @@
+
 export type PetScene = {
   id: string;
   name: string;
@@ -9,23 +10,25 @@ export type PetScene = {
   variations: string[];
 };
 
-const identityLine = 'Use the uploaded pet photo as the direct identity reference. Keep the same specific pet, same face, eyes, nose, ears, fur color, markings, body shape, collar if visible, and personality. Change the environment, props, mood and composition only.';
+const identityLine = `Use the uploaded pet photo as the direct visual reference. Keep the same specific animal identity: same face, eyes, nose/beak, ears, fur or feather color, markings, body shape, collar if visible, expression and personality. This is an image edit of the original pet, not a new animal. Change only the scene, background, props, lighting, mood, outfit/accessories and composition.`;
 
 export const PET_STYLES: PetScene[] = [
   {
     id: 'luxury-restaurant',
     name: 'Luxury Restaurant',
-    desc: 'Fine dining, candlelight, raised glass',
+    desc: 'Fine dining, candlelight and a raised glass',
     icon: '🍷',
     image: '/examples/luxury-restaurant.jpg',
     category: 'restaurant',
-    prompt: `${identityLine} Place the pet in a luxurious fine dining restaurant. Warm candlelight, chandeliers, white tablecloth, elegant dinner plate. The pet raises a wine glass in a funny but believable way, using a paw-like gesture rather than a human hand. Photorealistic premium scene.`,
+    prompt: `${identityLine} Place the pet in a luxurious fine dining restaurant. The pet may raise a wine glass in a funny believable way, with an animal-like paw/claw gesture, not a human hand. Premium photorealistic dinner scene.`,
     variations: [
-      'dark cozy fine dining restaurant with fireplace, candles, warm wood walls, intimate atmosphere',
-      'bright cheerful garden restaurant with plants, daylight, fresh colorful food on the table',
-      'classic luxury restaurant with a pianist in the background, chandeliers, elegant guests softly blurred',
-      'romantic bistro terrace with string lights, flowers and warm evening glow',
-      'upscale restaurant close-up portrait with wine glass near the pet, elegant table setting'
+      'dark cozy fine dining restaurant with fireplace, candles, warm wood walls and intimate atmosphere',
+      'classic luxury restaurant with chandeliers, white tablecloth, elegant dinner plate and soft guests in the background',
+      'luxury restaurant with a grand piano and pianist softly blurred in the background',
+      'romantic bistro terrace with flowers, string lights and warm evening glow',
+      'upscale close-up restaurant portrait with a wine glass near the pet and elegant table setting',
+      'bright cheerful restaurant with plants, daylight and colorful food',
+      'retro restaurant booth with a playful dinner atmosphere'
     ]
   },
   {
@@ -35,7 +38,7 @@ export const PET_STYLES: PetScene[] = [
     icon: '🥗',
     image: '/examples/bright-restaurant.jpg',
     category: 'restaurant',
-    prompt: `${identityLine} Place the pet in a light cheerful restaurant with big windows, plants, fresh colorful food, warm daylight and friendly atmosphere. A wine glass or water glass may be near the pet. Photorealistic.`,
+    prompt: `${identityLine} Place the pet in a light cheerful restaurant with big windows, plants, fresh colorful food, warm daylight and friendly atmosphere. Photorealistic.`,
     variations: [
       'sunny greenhouse restaurant full of plants and daylight',
       'light Mediterranean restaurant with colorful plates and soft natural light',
@@ -46,12 +49,12 @@ export const PET_STYLES: PetScene[] = [
   },
   {
     id: 'burger-restaurant',
-    name: 'Burger Restaurant',
-    desc: 'Burgers, fries and fun diner vibes',
+    name: 'Burger Diner',
+    desc: 'Burgers, fries and playful diner vibes',
     icon: '🍔',
     image: '/examples/burger-restaurant.jpg',
     category: 'restaurant',
-    prompt: `${identityLine} Place the pet in a fun burger restaurant with burgers, fries, milkshake, warm neon lights and playful diner atmosphere. The pet sits at the table like a funny guest. Photorealistic.`,
+    prompt: `${identityLine} Place the pet in a fun burger diner with burgers, fries, milkshake, warm neon lights and playful atmosphere. The pet sits at the table like a funny guest. Photorealistic.`,
     variations: [
       'retro burger diner with neon sign, burger and fries on the table',
       'modern burger bar with brick wall and warm lights',
@@ -62,12 +65,12 @@ export const PET_STYLES: PetScene[] = [
   },
   {
     id: 'pianist-restaurant',
-    name: 'Luxury with Pianist',
+    name: 'Piano Dinner',
     desc: 'Elegant restaurant with live music',
     icon: '🎹',
     image: '/examples/pianist-restaurant.jpg',
     category: 'restaurant',
-    prompt: `${identityLine} Place the pet in an elegant luxury restaurant with a grand piano and a pianist softly blurred in the background. Candlelight, chandeliers, wine glass, premium dinner atmosphere. Photorealistic.`,
+    prompt: `${identityLine} Place the pet in an elegant luxury restaurant with a grand piano and a pianist softly blurred in the background. Candlelight, chandeliers, premium dinner atmosphere. Photorealistic.`,
     variations: [
       'grand piano visible behind the pet, dark luxury restaurant, candlelit dinner',
       'elegant dining room with pianist and soft golden chandelier light',
@@ -95,7 +98,7 @@ export const PET_STYLES: PetScene[] = [
   {
     id: 'retro-diner',
     name: 'Retro Diner',
-    desc: 'Playful booth, milkshake and fries',
+    desc: 'Vintage booth, milkshake and fries',
     icon: '🥤',
     image: '/examples/retro-diner.jpg',
     category: 'restaurant',
@@ -110,53 +113,53 @@ export const PET_STYLES: PetScene[] = [
   },
   {
     id: 'astronaut',
-    name: 'Astronaut',
-    desc: 'Space suit on the moon',
+    name: 'Space Explorer',
+    desc: 'Space suit, moon and stars',
     icon: '🚀',
     image: '/examples/astronaut.jpg',
     category: 'adventure',
-    prompt: `${identityLine} Place the pet in a realistic astronaut suit on the moon, Earth visible through the helmet or in the background. Cinematic space lighting, magical but realistic.`,
-    variations: ['moon surface with Earth rising behind', 'inside a spacecraft window looking at Earth', 'Mars-like red planet scene', 'floating in zero gravity with stars', 'astronaut portrait with helmet reflections']
+    prompt: `${identityLine} Place the pet in a realistic astronaut suit in space, with moon surface, stars and Earth visible. Cinematic but believable.`,
+    variations: ['moon surface with Earth rising behind', 'inside a spacecraft window looking at Earth', 'Mars-like red planet scene', 'floating in zero gravity with stars', 'astronaut portrait with helmet reflections', 'space station interior with Earth view']
   },
   {
     id: 'king-throne',
-    name: 'King on Throne',
-    desc: 'Royal palace portrait',
+    name: 'Royal Throne',
+    desc: 'Palace portrait with crown',
     icon: '👑',
     image: '/examples/king-throne.jpg',
     category: 'fantasy',
     prompt: `${identityLine} Place the pet on a royal throne in a grand palace with a small crown and tasteful royal robe details. Dramatic warm palace lighting.`,
-    variations: ['golden throne room with crown', 'dark royal palace portrait', 'red velvet throne and candlelight', 'castle hall with royal banners', 'close-up royal portrait with jewels']
+    variations: ['golden throne room with crown', 'dark royal palace portrait', 'red velvet throne and candlelight', 'castle hall with royal banners', 'close-up royal portrait with jewels', 'bright palace balcony portrait']
   },
   {
     id: 'beach-vacation',
     name: 'Beach Vacation',
-    desc: 'Tropical sunshine and cocktails',
+    desc: 'Tropical sun, sea and holiday vibes',
     icon: '🏖️',
     image: '/examples/beach-vacation.jpg',
     category: 'adventure',
-    prompt: `${identityLine} Place the pet on a sunny tropical beach vacation with palm trees, sunglasses, blue sea, coconuts and cheerful holiday mood.`,
-    variations: ['tropical beach with palm trees and coconut drinks', 'sunny beach chair vacation portrait', 'golden sunset beach scene', 'luxury resort poolside setting', 'playful sand and ocean background']
+    prompt: `${identityLine} Place the pet on a sunny tropical beach vacation with palm trees, blue sea, coconuts and cheerful holiday mood.`,
+    variations: ['tropical beach with palm trees and coconut drinks', 'sunny beach chair vacation portrait', 'golden sunset beach scene', 'luxury resort poolside setting', 'playful sand and ocean background', 'bright beach café terrace', 'yacht harbor on a sunny day', 'Mediterranean beach town']
   },
   {
     id: 'cozy-christmas',
     name: 'Cozy Christmas',
-    desc: 'Warm holiday dinner scene',
+    desc: 'Warm festive holiday scene',
     icon: '🎄',
     image: '/examples/cozy-christmas.jpg',
     category: 'holiday',
-    prompt: `${identityLine} Place the pet in a cozy Christmas room with festive sweater, Christmas tree, warm lights, candles, holiday dinner atmosphere.`,
-    variations: ['Christmas dinner table with tree lights', 'cozy fireplace and festive sweater', 'snowy window background with warm room lights', 'holiday gift scene under the Christmas tree', 'candlelit Christmas portrait']
+    prompt: `${identityLine} Place the pet in a cozy Christmas room with festive decorations, Christmas tree, warm lights, candles and holiday dinner atmosphere.`,
+    variations: ['Christmas dinner table with tree lights', 'cozy fireplace and festive sweater', 'snowy window background with warm room lights', 'holiday gift scene under the Christmas tree', 'candlelit Christmas portrait', 'bright cheerful Christmas kitchen']
   },
   {
     id: 'superhero',
-    name: 'Superhero',
-    desc: 'Hero on a city rooftop',
+    name: 'Superhero Adventure',
+    desc: 'Heroic movie poster moment',
     icon: '🦸',
     image: '/examples/superhero.jpg',
     category: 'fantasy',
-    prompt: `${identityLine} Place the pet as a superhero on a cinematic city rooftop at night, tasteful cape, heroic lighting, movie poster feel.`,
-    variations: ['rooftop at sunset with cape', 'night skyline heroic pose', 'comic movie poster lighting', 'dramatic rain-soaked city rooftop', 'close-up superhero portrait with glowing skyline']
+    prompt: `${identityLine} Place the pet as a superhero in a cinematic scene, tasteful cape or hero suit details, heroic lighting and movie poster feel.`,
+    variations: ['rooftop at sunset with cape', 'night skyline heroic pose', 'comic movie poster lighting', 'dramatic rain-soaked city rooftop', 'close-up superhero portrait with glowing skyline', 'bright heroic city scene']
   },
   {
     id: 'paris-cafe',
@@ -166,27 +169,27 @@ export const PET_STYLES: PetScene[] = [
     image: '/examples/paris-cafe.jpg',
     category: 'restaurant',
     prompt: `${identityLine} Place the pet at a charming Paris café terrace with croissant, coffee, flowers and Eiffel Tower softly visible in the background.`,
-    variations: ['Paris café breakfast with croissant', 'Eiffel Tower terrace at sunrise', 'rainy Paris window café', 'evening bistro with street lights', 'classic French outdoor café portrait']
+    variations: ['Paris café breakfast with croissant', 'Eiffel Tower terrace at sunrise', 'rainy Paris window café', 'evening bistro with street lights', 'classic French outdoor café portrait', 'bright floral Paris terrace']
   },
   {
     id: 'chef-kitchen',
-    name: 'Chef in Kitchen',
-    desc: 'Funny gourmet chef scene',
+    name: 'Master Chef',
+    desc: 'Funny gourmet kitchen scene',
     icon: '👨‍🍳',
     image: '/examples/chef-kitchen.jpg',
     category: 'professional',
     prompt: `${identityLine} Place the pet in a professional kitchen as a cute chef with chef hat, vegetables, pans and warm kitchen lighting. Funny but premium.`,
-    variations: ['chef hat in professional kitchen', 'Italian kitchen with pasta ingredients', 'baking scene with flour and warm lights', 'fine dining kitchen with copper pans', 'funny chef portrait with vegetables']
+    variations: ['chef hat in professional kitchen', 'Italian kitchen with pasta ingredients', 'baking scene with flour and warm lights', 'fine dining kitchen with copper pans', 'funny chef portrait with vegetables', 'bright colorful home kitchen']
   },
   {
     id: 'yacht-adventure',
-    name: 'Yacht Adventure',
-    desc: 'Luxury at sea',
+    name: 'Luxury Yacht',
+    desc: 'Holiday at sea',
     icon: '🛥️',
     image: '/examples/yacht-adventure.jpg',
     category: 'adventure',
     prompt: `${identityLine} Place the pet on a luxury yacht at sea with blue water, sunshine, elegant sailor vibe and holiday atmosphere.`,
-    variations: ['at the yacht steering wheel', 'sunny deck with blue sea', 'luxury marina background', 'sunset sailing scene', 'Mediterranean yacht holiday portrait']
+    variations: ['at the yacht steering wheel', 'sunny deck with blue sea', 'luxury marina background', 'sunset sailing scene', 'Mediterranean yacht holiday portrait', 'bright ocean deck with coastal town']
   },
   {
     id: 'medieval-knight',
@@ -196,27 +199,27 @@ export const PET_STYLES: PetScene[] = [
     image: '/examples/medieval-knight.jpg',
     category: 'fantasy',
     prompt: `${identityLine} Place the pet as a noble medieval knight near a castle, tasteful armor, fantasy landscape, cinematic light.`,
-    variations: ['castle courtyard in armor', 'misty mountain castle background', 'royal knight portrait with sword', 'medieval battlefield hero pose', 'fantasy castle sunset portrait']
+    variations: ['castle courtyard in armor', 'misty mountain castle background', 'royal knight portrait with sword', 'medieval battlefield hero pose', 'fantasy castle sunset portrait', 'bright castle garden with armor details']
   },
   {
     id: 'business-meeting',
     name: 'Business Meeting',
-    desc: 'Boardroom boss pet',
+    desc: 'Boardroom boss moment',
     icon: '💼',
     image: '/examples/business-meeting.jpg',
     category: 'professional',
-    prompt: `${identityLine} Place the pet in a funny professional business meeting, seated at a boardroom table with suit details, laptop, papers and city office view.`,
-    variations: ['boardroom table with documents', 'CEO office with skyline view', 'serious meeting with laptop', 'conference room presentation scene', 'business portrait with tie and city background']
+    prompt: `${identityLine} Place the pet in a funny professional business meeting, seated at a boardroom table with tasteful suit details, laptop, papers and city office view.`,
+    variations: ['boardroom table with documents', 'CEO office with skyline view', 'serious meeting with laptop', 'conference room presentation scene', 'business portrait with tie and city background', 'bright modern coworking office']
   },
   {
     id: 'wizard-school',
-    name: 'Wizard School',
-    desc: 'Magical school scene',
+    name: 'Wizard Academy',
+    desc: 'Magic school atmosphere',
     icon: '🪄',
     image: '/examples/wizard-school.jpg',
     category: 'fantasy',
     prompt: `${identityLine} Place the pet in a magical wizard school with robe, old books, candles, floating sparkles and cozy fantasy atmosphere.`,
-    variations: ['wizard classroom with floating candles', 'old library with magic books', 'castle hall with warm candlelight', 'spell lesson scene with glowing wand', 'cozy magical dormitory portrait']
+    variations: ['wizard classroom with floating candles', 'old library with magic books', 'castle hall with warm candlelight', 'spell lesson scene with glowing wand', 'cozy magical dormitory portrait', 'bright magical greenhouse classroom']
   },
   {
     id: 'ski-adventure',
@@ -226,7 +229,7 @@ export const PET_STYLES: PetScene[] = [
     image: '/examples/ski-adventure.jpg',
     category: 'adventure',
     prompt: `${identityLine} Place the pet in a snowy ski adventure scene in the mountains, wearing tasteful winter gear, ski lodge or snowy slope background.`,
-    variations: ['snowy mountain slope with ski goggles', 'cozy ski lodge terrace', 'alpine village background', 'winter action portrait in snow', 'sunny mountain panorama with ski gear']
+    variations: ['snowy mountain slope with ski goggles', 'cozy ski lodge terrace', 'alpine village background', 'winter action portrait in snow', 'sunny mountain panorama with ski gear', 'bright ski resort café terrace']
   }
 ];
 
@@ -237,4 +240,9 @@ export function getStylePrompt(styleId: string) {
 export function getSceneVariation(styleId: string, index: number) {
   const scene = PET_STYLES.find((style) => style.id === styleId) ?? PET_STYLES[0];
   return scene.variations[index % scene.variations.length];
+}
+
+export function getRandomSceneVariation(styleId: string) {
+  const scene = PET_STYLES.find((style) => style.id === styleId) ?? PET_STYLES[0];
+  return scene.variations[Math.floor(Math.random() * scene.variations.length)];
 }

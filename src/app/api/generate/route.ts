@@ -1,10 +1,11 @@
+
 import { NextRequest, NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
 import { ensureOrderDir, saveOrder, saveOrderFile, getOrderFileUrl } from '@/lib/orders';
-import { generateOneWatermarkedPreview } from '@/lib/ai';
+import { generateThreeWatermarkedPreviews } from '@/lib/ai';
 
 export const runtime = 'nodejs';
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 export async function POST(req: NextRequest) {
   try {
@@ -16,13 +17,8 @@ export async function POST(req: NextRequest) {
     const image = form.get('image');
     const styleId = String(form.get('styleId') ?? 'luxury-restaurant');
 
-    if (!(image instanceof File)) {
-      return NextResponse.json({ error: 'No image received.' }, { status: 400 });
-    }
-
-    if (image.size > 10 * 1024 * 1024) {
-      return NextResponse.json({ error: 'Image is too large. Maximum 10 MB.' }, { status: 400 });
-    }
+    if (!(image instanceof File)) return NextResponse.json({ error: 'No image received.' }, { status: 400 });
+    if (image.size > 10 * 1024 * 1024) return NextResponse.json({ error: 'Image is too large. Maximum 10 MB.' }, { status: 400 });
 
     const orderId = nanoid(12);
     await ensureOrderDir(orderId);
@@ -31,7 +27,7 @@ export async function POST(req: NextRequest) {
     const inputFile = `upload-${safeName || 'pet.png'}`;
     await saveOrderFile(orderId, inputFile, inputBuffer, image.type || 'image/png');
 
-    const previewName = await generateOneWatermarkedPreview({
+    const previewFiles = await generateThreeWatermarkedPreviews({
       orderId,
       inputBuffer,
       inputMimeType: image.type || 'image/png',
@@ -45,12 +41,12 @@ export async function POST(req: NextRequest) {
       status: 'preview',
       inputFile,
       inputMimeType: image.type || 'image/png',
-      previewFiles: [previewName],
+      previewFiles,
       hdFiles: []
     });
 
-    const previewUrl = await getOrderFileUrl(orderId, previewName);
-    return NextResponse.json({ orderId, previewUrl });
+    const previewUrls = await Promise.all(previewFiles.map((file) => getOrderFileUrl(orderId, file)));
+    return NextResponse.json({ orderId, previewUrls, previewUrl: previewUrls[0] });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Preview generation failed. Check your fal.ai key, billing, and try again.' }, { status: 500 });

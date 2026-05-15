@@ -37,6 +37,7 @@ export default function Home() {
       return;
     }
 
+    if (data.previewUrls) sessionStorage.setItem(`petlanda-previews-${data.orderId}`, JSON.stringify(data.previewUrls));
     if (data.previewUrl) sessionStorage.setItem(`petlanda-preview-${data.orderId}`, data.previewUrl);
     window.location.href = `/checkout?orderId=${data.orderId}`;
   }
@@ -106,11 +107,11 @@ export default function Home() {
 
         <section className="generate-row">
           <div className="card generate-card">
-            <h3>3. Generate your free preview</h3>
-            <p>Your preview uses the selected scene: <strong>{selectedScene.name}</strong>. It includes a visible watermark. Unlock HD to remove it and create your full pack.</p>
+            <h3>3. Generate 3 free previews</h3>
+            <p>Your 3 previews use the selected scene: <strong>{selectedScene.name}</strong>. They include a visible watermark. Unlock HD to remove it and create your full unique pack.</p>
             {error && <p className="error">{error}</p>}
-            <button className="primary" onClick={submit} disabled={loading}>{loading ? 'Creating your scene...' : '✨ Create my free preview'}</button>
-            <small>Premium generation credit is used for every preview.</small>
+            <button className="primary" onClick={submit} disabled={loading}>{loading ? 'Creating your previews...' : '✨ ✨ Create 3 free previews'}</button>
+            <small>Low-resolution preview generation credit is used for each preview.</small>
           </div>
           <div className="card packages">
             <h3>Choose package after preview</h3>

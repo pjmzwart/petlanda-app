@@ -6,6 +6,7 @@ import { scenes } from '@/lib/scenes';
 
 export default function Home() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const previewSectionRef = useRef<HTMLElement | null>(null);
 
   const [file, setFile] = useState<File | null>(null);
   const [sceneId, setSceneId] = useState('restaurant');
@@ -14,6 +15,8 @@ export default function Home() {
   const [orderId, setOrderId] = useState('');
   const [inputUrl, setInputUrl] = useState('');
   const [error, setError] = useState('');
+  const [previewMessage, setPreviewMessage] = useState('');
+  const [previewProgress, setPreviewProgress] = useState(0);
 
   function chooseFile() {
     fileInputRef.current?.click();
@@ -25,6 +28,8 @@ export default function Home() {
     setOrderId('');
     setInputUrl('');
     setError('');
+    setPreviewMessage('');
+    setPreviewProgress(0);
   }
 
   function clearPhoto() {
@@ -33,9 +38,9 @@ export default function Home() {
     setOrderId('');
     setInputUrl('');
     setError('');
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
+    setPreviewMessage('');
+    setPreviewProgress(0);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   }
 
   function clearPreviewsOnly() {
@@ -43,6 +48,14 @@ export default function Home() {
     setOrderId('');
     setInputUrl('');
     setError('');
+    setPreviewMessage('');
+    setPreviewProgress(0);
+  }
+
+  function scrollToPreviews() {
+    setTimeout(() => {
+      previewSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
   }
 
   async function generate() {
@@ -56,25 +69,62 @@ export default function Home() {
     setPreviews([]);
     setOrderId('');
     setInputUrl('');
-
-    const fd = new FormData();
-    fd.append('file', file);
-    fd.append('sceneId', sceneId);
+    setPreviewProgress(5);
+    setPreviewMessage('Uploading your pet photo...');
+    scrollToPreviews();
 
     try {
-      const res = await fetch('/api/generate', { method: 'POST', body: fd });
-      const data = await res.json();
+      const fd = new FormData();
+      fd.append('file', file);
+      fd.append('sceneId', sceneId);
 
-      if (!res.ok) {
-        setError(data.error || 'Preview generation failed.');
-        return;
+      const initRes = await fetch('/api/init-preview', { method: 'POST', body: fd });
+      const initData = await initRes.json();
+
+      if (!initRes.ok) {
+        throw new Error(initData.error || 'Could not upload photo.');
       }
 
-      setPreviews(data.previewUrls || []);
-      setOrderId(data.orderId || '');
-      setInputUrl(data.inputUrl || '');
+      setOrderId(initData.orderId);
+      setInputUrl(initData.inputUrl);
+      setPreviewMessage('Photo uploaded. Creating preview 1 of 3...');
+      setPreviewProgress(15);
+
+      const nextPreviews: string[] = [];
+
+      for (let i = 0; i < 3; i++) {
+        setPreviewMessage(`Creating preview ${i + 1} of 3...`);
+        setPreviewProgress(15 + i * 25);
+
+        const res = await fetch('/api/generate-preview-one', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            orderId: initData.orderId,
+            inputUrl: initData.inputUrl,
+            sceneId,
+            index: i
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || `Preview ${i + 1} failed.`);
+        }
+
+        nextPreviews.push(data.previewUrl);
+        setPreviews([...nextPreviews]);
+        setPreviewProgress(35 + i * 22);
+        setPreviewMessage(`Preview ${i + 1} of 3 ready.`);
+        scrollToPreviews();
+      }
+
+      setPreviewProgress(100);
+      setPreviewMessage('Your previews are ready. Choose your HD pack below.');
     } catch (err: any) {
       setError(err?.message || 'Preview generation failed.');
+      setPreviewMessage('Something went wrong. You can try again with the same photo.');
     } finally {
       setLoading(false);
     }
@@ -172,9 +222,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="panel" style={{ marginTop: 22, textAlign: 'center' }}>
+        <section ref={previewSectionRef} className="panel" style={{ marginTop: 22, textAlign: 'center' }}>
           <h2>3. Create 3 free previews</h2>
-          <p className="small">Try multiple scenes with the same pet photo. No page refresh needed.</p>
+          <p className="small">Try multiple scenes with the same pet photo. Previews appear one by one.</p>
 
           {error && <div className="error">{error}</div>}
 
@@ -182,10 +232,19 @@ export default function Home() {
             {loading ? 'Creating previews...' : previews.length ? 'Generate again' : 'Create my free previews'}
           </button>
 
-          {loading && (
-            <p className="small" style={{ marginTop: 14 }}>
-              Creating your previews. This can take a short moment. Please keep this page open.
-            </p>
+          {(loading || previewMessage) && (
+            <div style={{ maxWidth: 520, margin: '18px auto 0' }}>
+              <div style={{ height: 14, background: 'rgba(255,255,255,.12)', borderRadius: 999, overflow: 'hidden' }}>
+                <div style={{
+                  height: '100%',
+                  width: `${previewProgress}%`,
+                  background: 'linear-gradient(135deg,#f59e0b,#fbbf24)',
+                  borderRadius: 999,
+                  transition: 'width .35s ease'
+                }} />
+              </div>
+              <p className="small" style={{ marginTop: 10 }}>{previewMessage}</p>
+            </div>
           )}
 
           {previews.length > 0 && (
@@ -193,6 +252,10 @@ export default function Home() {
               <div className="preview-grid">
                 {previews.map((p, i) => <img key={i} src={p} alt={`Preview ${i + 1}`} />)}
               </div>
+
+              {loading && previews.length < 3 && (
+                <p className="small">You can already view the first previews while the rest are still being created.</p>
+              )}
 
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 20 }}>
                 <button className="btn" onClick={generate} disabled={loading}>
@@ -206,21 +269,25 @@ export default function Home() {
                 </button>
               </div>
 
-              <h2>Unlock your full HD pack</h2>
-              <div className="packs">
-                <div className="pack">
-                  <h3>Basic Pack</h3>
-                  <div className="price">€7.99</div>
-                  <p>5 unique HD images without watermark.</p>
-                  <button className="btn" onClick={() => pay('basic')}>Unlock 5 HD images</button>
-                </div>
-                <div className="pack">
-                  <h3>Premium Pack</h3>
-                  <div className="price">€14.99</div>
-                  <p>10 unique HD images with more variation.</p>
-                  <button className="btn gold" onClick={() => pay('premium')}>Unlock 10 HD images</button>
-                </div>
-              </div>
+              {previews.length === 3 && (
+                <>
+                  <h2>Unlock your full HD pack</h2>
+                  <div className="packs">
+                    <div className="pack">
+                      <h3>Basic Pack</h3>
+                      <div className="price">€7.99</div>
+                      <p>5 unique HD images without watermark.</p>
+                      <button className="btn" onClick={() => pay('basic')}>Unlock 5 HD images</button>
+                    </div>
+                    <div className="pack">
+                      <h3>Premium Pack</h3>
+                      <div className="price">€14.99</div>
+                      <p>10 unique HD images with more variation.</p>
+                      <button className="btn gold" onClick={() => pay('premium')}>Unlock 10 HD images</button>
+                    </div>
+                  </div>
+                </>
+              )}
             </>
           )}
         </section>

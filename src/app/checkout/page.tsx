@@ -3,6 +3,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 type HdStatus = {
   status: 'idle' | 'working' | 'done' | 'error';
@@ -13,7 +14,7 @@ type HdStatus = {
   error?: string;
 };
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const params = useSearchParams();
 
   const orderId = params.get('orderId') || '';
@@ -238,5 +239,12 @@ export default function CheckoutPage() {
         </section>
       </div>
     </main>
+  );
+}
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div>Loading checkout...</div>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }

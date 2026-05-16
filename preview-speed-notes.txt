@@ -1,0 +1,17 @@
+
+PREVIEW SPEED IMPROVEMENTS
+
+1. Generate previews at lower resolution
+   Example:
+   768x768 instead of 1024x1024
+
+2. Lower inference steps
+   Example:
+   steps: 20 instead of 40
+
+3. Generate previews in parallel
+   Use Promise.all()
+
+4. Only upscale after payment
+
+5. Cache uploaded pet extraction

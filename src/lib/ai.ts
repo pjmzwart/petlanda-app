@@ -7,6 +7,6 @@ function extractImageUrl(result:any):string{const c=[result?.data?.images?.[0]?.
 export async function generatePetImage(params:{inputBuffer:Buffer;inputMimeType?:string;sceneId:string;index?:number;preview?:boolean;}){
  if(!process.env.FAL_KEY&&!process.env.OPENAI_API_KEY)throw new Error('FAL_KEY missing');
  const prompt=buildPrompt(params.sceneId,params.index||0);
- const result:any=await fal.subscribe('fal-ai/flux-pro/kontext',{input:{image_url:dataUriFromBuffer(params.inputBuffer,params.inputMimeType||'image/jpeg'),prompt,output_format:'jpeg',aspect_ratio:'1:1',guidance_scale:3.5,num_inference_steps:params.preview?18:28,safety_tolerance:'2'} as any,logs:false} as any);
+ const result:any=await fal.subscribe('fal-ai/flux-pro/kontext',{input:{image_url:dataUriFromBuffer(params.inputBuffer,params.inputMimeType||'image/jpeg'),prompt,output_format:'jpeg',aspect_ratio:'1:1',guidance_scale:params.preview?4.8:4.2,num_inference_steps:params.preview?12:30,safety_tolerance:'2'} as any,logs:false} as any);
  const url=extractImageUrl(result); const res=await fetch(url); if(!res.ok)throw new Error('Could not fetch generated image'); return Buffer.from(await res.arrayBuffer());
 }

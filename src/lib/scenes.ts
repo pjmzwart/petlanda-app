@@ -1,44 +1,276 @@
+export type SceneId =
+  | 'restaurant'
+  | 'beach'
+  | 'space'
+  | 'royal'
+  | 'christmas'
+  | 'superhero'
+  | 'paris'
+  | 'chef'
+  | 'yacht'
+  | 'wizard'
+  | 'business'
+  | 'knight';
 
-export type SceneId='restaurant'|'beach'|'space'|'royal'|'christmas'|'superhero'|'paris'|'chef'|'yacht'|'wizard'|'business'|'knight';
-export type Scene={id:SceneId;title:string;subtitle:string;emoji:string;sampleAnimal:string;sampleBg:string;variations:string[]};
+export type Scene = {
+  id: SceneId;
+  title: string;
+  subtitle: string;
+  emoji: string;
+  sampleAnimal: string;
+  sampleBg: string;
+  example: string;
+  ideas: string[];
+};
 
-export const scenes:Scene[]=[
-{id:'restaurant',title:'Luxury Restaurant',subtitle:'fine dining, cafés and playful diners',emoji:'🍷',sampleAnimal:'🐕‍🦺',sampleBg:'linear-gradient(135deg,#27120f,#7c2d12 45%,#f59e0b)',variations:[
-'dark cozy candlelight fine dining restaurant with warm chandeliers','bright cheerful brunch restaurant with fresh flowers and sunlight','playful American burger diner with fries and colorful neon signs','elegant piano dinner restaurant with a grand piano in the background','romantic Parisian bistro terrace with warm outdoor lights','retro diner booth with milkshake and fries','luxury rooftop restaurant at night with city lights','Mediterranean beach restaurant with sea view','modern sushi restaurant with stylish ambient lighting','Michelin-style fine dining table with white tablecloth and candles']},
-{id:'beach',title:'Beach Vacation',subtitle:'tropical, coastal and sunny holiday scenes',emoji:'🏖️',sampleAnimal:'🐶',sampleBg:'linear-gradient(135deg,#0891b2,#38bdf8 45%,#fde68a)',variations:[
-'tropical palm beach with turquoise water and white sand','luxury beach club with sunbeds and pastel umbrellas','Mediterranean rocky coastline with blue sea','sunset beach walk with golden light and waves','cheerful beach café terrace near the sea','surf beach with colorful surfboards','yacht harbor near the beach with sunny reflections','Maldives-style crystal clear beach and resort vibe','beach picnic with summer fruits','resort pool area next to the beach with palm trees']},
-{id:'space',title:'Space Explorer',subtitle:'moon, spaceship and cosmic adventures',emoji:'🚀',sampleAnimal:'🐈',sampleBg:'linear-gradient(135deg,#020617,#1d4ed8 50%,#93c5fd)',variations:[
-'spaceship cockpit with Earth visible through the window','moon surface with Earth glowing in the sky','futuristic space station with soft blue lights','Mars colony with red planet landscape','cyberpunk space city with neon reflections','astronaut scene near a rocket launch platform','hologram control room with stars outside','asteroid mining station with cinematic lighting']},
-{id:'royal',title:'Royal Throne',subtitle:'palaces, crowns and majestic portraits',emoji:'👑',sampleAnimal:'🐕',sampleBg:'linear-gradient(135deg,#3b2300,#92400e 55%,#facc15)',variations:[
-'golden palace throne room with royal crown','medieval castle throne hall with torchlight','renaissance royal portrait room with curtains','fantasy king hall with chandeliers','dark gothic throne room with regal atmosphere','snowy royal castle interior with blue-gold tones','Roman emperor palace with marble columns','fairytale queen throne room with magical sparkles']},
-{id:'christmas',title:'Cozy Christmas',subtitle:'warm winter, trees and festive dinners',emoji:'🎄',sampleAnimal:'🐹',sampleBg:'linear-gradient(135deg,#14532d,#991b1b 50%,#fbbf24)',variations:[
-'cozy Christmas living room with fireplace and tree','snowy village Christmas street with warm lights','festive Christmas dinner table with candles','Santa workshop with toys and magical light','winter cabin with blankets and fireplace','Christmas market with fairy lights and snow']},
-{id:'superhero',title:'Superhero Adventure',subtitle:'comic posters and city action',emoji:'🦸',sampleAnimal:'🐺',sampleBg:'linear-gradient(135deg,#172554,#dc2626 58%,#facc15)',variations:[
-'superhero rooftop above glowing city skyline','cinematic superhero poster with cape','comic book action scene with colorful energy','futuristic city battle scene','lightning storm superhero pose','superhero landing pose in city street']},
-{id:'paris',title:'Paris Café',subtitle:'terraces, croissants and Eiffel Tower views',emoji:'☕',sampleAnimal:'🐩',sampleBg:'linear-gradient(135deg,#4c1d95,#be185d 55%,#f9a8d4)',variations:[
-'sunny Paris café terrace with croissant and coffee','romantic evening café near the Eiffel Tower','French bistro street with flowers','cozy indoor Parisian café with vintage posters','Montmartre street café with artistic atmosphere','luxury café table with macarons']},
-{id:'chef',title:'Master Chef',subtitle:'kitchens, cooking and culinary fun',emoji:'👨‍🍳',sampleAnimal:'🐦',sampleBg:'linear-gradient(135deg,#111827,#475569 52%,#fb923c)',variations:[
-'professional kitchen with chef hat and vegetables','cozy home kitchen with baking ingredients','Italian kitchen with pasta and tomatoes','luxury restaurant kitchen with stainless steel','cute bakery scene with pastries','cooking show studio with bright lights']},
-{id:'yacht',title:'Luxury Yacht',subtitle:'sea, harbor and stylish boat adventures',emoji:'⛵',sampleAnimal:'🐈',sampleBg:'linear-gradient(135deg,#075985,#0ea5e9 52%,#f8fafc)',variations:[
-'luxury yacht deck in Mediterranean sun','stylish marina with yachts and blue water','sunset boat trip with golden reflections','captain scene at the yacht steering wheel','beach harbor lunch on a boat','tropical island yacht adventure']},
-{id:'wizard',title:'Wizard Academy',subtitle:'magic libraries and enchanted castles',emoji:'🪄',sampleAnimal:'🐈‍⬛',sampleBg:'linear-gradient(135deg,#2e1065,#7e22ce 55%,#fbbf24)',variations:[
-'magical wizard school library with floating candles','enchanted castle classroom with spell books','cozy magic study with glowing potions','grand hall with fantasy banners','wizard tower at night with stars outside','magical train station with whimsical atmosphere']},
-{id:'business',title:'Business Meeting',subtitle:'office, boardroom and CEO portraits',emoji:'💼',sampleAnimal:'🐇',sampleBg:'linear-gradient(135deg,#111827,#334155 50%,#38bdf8)',variations:[
-'modern boardroom meeting with city skyline','CEO office portrait with elegant desk','business presentation room with charts','stylish coworking space with laptop and coffee','luxury office lounge with warm lighting']},
-{id:'knight',title:'Medieval Knight',subtitle:'castles, armor and epic fantasy scenes',emoji:'⚔️',sampleAnimal:'🐕',sampleBg:'linear-gradient(135deg,#1f2937,#64748b 50%,#cbd5e1)',variations:[
-'medieval castle courtyard with armor and banners','epic knight portrait in a fantasy kingdom','stone castle hall with torchlight','dragon fantasy landscape with dramatic sky','royal tournament field with flags']}
+export const scenes: Scene[] = [
+  {
+    id: 'restaurant',
+    title: 'Luxury Restaurant',
+    subtitle: 'VIP dinners, funny waiters and fancy food',
+    emoji: '🍷',
+    sampleAnimal: '🐩',
+    sampleBg: 'linear-gradient(135deg,#27120f,#7c2d12 45%,#f59e0b)',
+    example: 'A poodle in a tuxedo at a candlelit VIP table.',
+    ideas: [
+      'uploaded pet sitting like a VIP guest at a candlelit fine dining table while a waiter presents a tiny gourmet plate',
+      'uploaded pet standing proudly on a red restaurant chair in a luxury rooftop restaurant with city lights behind',
+      'uploaded pet with a tiny bow tie looking at an absurdly fancy dessert tower in a Michelin-style restaurant',
+      'uploaded pet causing a funny spaghetti disaster in an elegant Italian restaurant, bright and playful',
+      'uploaded pet as the star guest at a chef table with copper pans, flowers and luxury plates around it'
+    ]
+  },
+  {
+    id: 'beach',
+    title: 'Beach Vacation',
+    subtitle: 'surfboards, cocktails and tropical chaos',
+    emoji: '🏖️',
+    sampleAnimal: '🐱',
+    sampleBg: 'linear-gradient(135deg,#0891b2,#38bdf8 45%,#fde68a)',
+    example: 'A cat with sunglasses surfing a tiny wave.',
+    ideas: [
+      'uploaded pet riding a surfboard on a bright tropical wave with sunglasses and splashing water',
+      'uploaded pet relaxing like a celebrity on a beach chair with a coconut drink and palm trees',
+      'uploaded pet running through shallow sea water with beach ball and joyful motion',
+      'uploaded pet on a luxury resort pool float with colorful umbrellas and turquoise water',
+      'uploaded pet standing on a yacht pier with wind in fur, bright Mediterranean holiday scene'
+    ]
+  },
+  {
+    id: 'space',
+    title: 'Space Explorer',
+    subtitle: 'zero gravity, rockets and alien planets',
+    emoji: '🚀',
+    sampleAnimal: '🐰',
+    sampleBg: 'linear-gradient(135deg,#020617,#1d4ed8 50%,#93c5fd)',
+    example: 'A rabbit floating in zero gravity with carrots around it.',
+    ideas: [
+      'uploaded pet floating in zero gravity inside a spaceship, toys and snacks drifting around, Earth visible through the window',
+      'uploaded pet wearing a cute space helmet jumping on the moon with Earth huge and bright in the background',
+      'uploaded pet pressing glowing buttons in a spaceship cockpit, funny serious astronaut mood',
+      'uploaded pet exploring a colorful alien planet with strange plants and friendly little aliens in the distance',
+      'uploaded pet flying past a rocket launch in a bright cinematic space adventure scene'
+    ]
+  },
+  {
+    id: 'royal',
+    title: 'Royal Throne',
+    subtitle: 'castles, crowns and royal nonsense',
+    emoji: '👑',
+    sampleAnimal: '🐹',
+    sampleBg: 'linear-gradient(135deg,#3b2300,#92400e 55%,#facc15)',
+    example: 'A hamster with a tiny crown on a giant golden throne.',
+    ideas: [
+      'uploaded pet wearing a tiny crown while standing proudly on a palace balcony with a fantasy castle behind',
+      'uploaded pet walking through a huge medieval castle hall with royal banners and bright golden light',
+      'uploaded pet lying dramatically on a red velvet royal carpet like a spoiled king or queen',
+      'uploaded pet painted as a funny renaissance royal portrait with crown, jewels and palace curtains',
+      'uploaded pet entering a knight banquet hall with candles, armor and servants blurred in the background'
+    ]
+  },
+  {
+    id: 'christmas',
+    title: 'Cozy Christmas',
+    subtitle: 'trees, gifts and festive disasters',
+    emoji: '🎄',
+    sampleAnimal: '🐶',
+    sampleBg: 'linear-gradient(135deg,#14532d,#991b1b 50%,#fbbf24)',
+    example: 'A puppy tangled in Christmas lights.',
+    ideas: [
+      'uploaded pet tangled in colorful Christmas lights next to a huge decorated tree, funny and bright',
+      'uploaded pet popping out of a giant gift box in a cozy Christmas room with fireplace',
+      'uploaded pet wearing a tiny festive scarf at a Christmas dinner table with candles',
+      'uploaded pet running through a snowy Christmas village with warm market lights',
+      'uploaded pet sitting in Santa workshop surrounded by toys and magical golden light'
+    ]
+  },
+  {
+    id: 'superhero',
+    title: 'Superhero Adventure',
+    subtitle: 'flying, saving cities and dramatic capes',
+    emoji: '🦸',
+    sampleAnimal: '🐈‍⬛',
+    sampleBg: 'linear-gradient(135deg,#172554,#dc2626 58%,#facc15)',
+    example: 'A black cat flying over the city with one paw forward.',
+    ideas: [
+      'uploaded pet flying through the air like a superhero with one paw forward, red cape waving strongly in the wind, bright city below',
+      'uploaded pet standing heroically on back legs on top of a skyscraper, cape blowing, proud action movie poster pose',
+      'uploaded pet swinging through jungle vines like an action hero with cape trailing behind, funny dynamic adventure',
+      'uploaded pet jumping between rooftops in a colorful neon city, mid-air action pose and superhero energy',
+      'uploaded pet landing from the sky in a superhero landing pose with dust, light beams and dramatic motion'
+    ]
+  },
+  {
+    id: 'paris',
+    title: 'Paris Café',
+    subtitle: 'croissants, terraces and Eiffel Tower views',
+    emoji: '☕',
+    sampleAnimal: '🐕',
+    sampleBg: 'linear-gradient(135deg,#4c1d95,#be185d 55%,#f9a8d4)',
+    example: 'A dachshund with a beret eating a croissant.',
+    ideas: [
+      'uploaded pet wearing a tiny beret at a Paris café table with croissant and Eiffel Tower behind',
+      'uploaded pet proudly guarding a plate of macarons on a sunny Paris terrace',
+      'uploaded pet looking out from a rainy Paris café window with warm lights and flowers',
+      'uploaded pet walking past a romantic Paris street café with baguette basket and cobblestones',
+      'uploaded pet as a funny little artist at Montmartre with paintbrushes and café lights'
+    ]
+  },
+  {
+    id: 'chef',
+    title: 'Master Chef',
+    subtitle: 'kitchens, flour explosions and tiny chef hats',
+    emoji: '👨‍🍳',
+    sampleAnimal: '🐦',
+    sampleBg: 'linear-gradient(135deg,#111827,#475569 52%,#fb923c)',
+    example: 'A bulldog in a chef hat after a flour explosion.',
+    ideas: [
+      'uploaded pet wearing a chef hat in a bright kitchen while flour explodes everywhere, funny cooking chaos',
+      'uploaded pet proudly presenting a tiny gourmet meal on a silver plate like a master chef',
+      'uploaded pet in an Italian kitchen surrounded by flying pasta, tomatoes and basil',
+      'uploaded pet tasting soup with a very serious chef expression in a professional kitchen',
+      'uploaded pet standing on a safe kitchen stool with vegetables, pans and warm studio lights'
+    ]
+  },
+  {
+    id: 'yacht',
+    title: 'Luxury Yacht',
+    subtitle: 'sea, sunglasses and billionaire pet energy',
+    emoji: '🛥️',
+    sampleAnimal: '🐕',
+    sampleBg: 'linear-gradient(135deg,#075985,#0ea5e9 52%,#f8fafc)',
+    example: 'A retriever with sunglasses on a yacht deck.',
+    ideas: [
+      'uploaded pet wearing sunglasses on a luxury yacht deck with wind in fur and blue sea behind',
+      'uploaded pet standing at the yacht steering wheel like a tiny captain in bright sunlight',
+      'uploaded pet relaxing on a yacht lounge chair with tropical coastline and sparkling water',
+      'uploaded pet dramatically looking over the bow of a yacht during golden sunset',
+      'uploaded pet arriving at a stylish marina with yachts, palm trees and celebrity holiday mood'
+    ]
+  },
+  {
+    id: 'wizard',
+    title: 'Wizard Academy',
+    subtitle: 'spells, magic libraries and floating books',
+    emoji: '🪄',
+    sampleAnimal: '🦉',
+    sampleBg: 'linear-gradient(135deg,#2e1065,#7e22ce 55%,#fbbf24)',
+    example: 'An owl casting a spell in a floating-book library.',
+    ideas: [
+      'uploaded pet casting a glowing spell in a magical library with floating books and candles',
+      'uploaded pet wearing a tiny wizard hat in an enchanted castle classroom with potions',
+      'uploaded pet accidentally creating magical sparkles and floating objects in a wizard study',
+      'uploaded pet walking through a grand fantasy academy hall with banners and warm light',
+      'uploaded pet beside a giant spell book with glowing runes and playful magical atmosphere'
+    ]
+  },
+  {
+    id: 'business',
+    title: 'Business Meeting',
+    subtitle: 'CEO portraits, boardrooms and serious pets',
+    emoji: '💼',
+    sampleAnimal: '🐹',
+    sampleBg: 'linear-gradient(135deg,#111827,#334155 50%,#38bdf8)',
+    example: 'A guinea pig as CEO with charts and tiny glasses.',
+    ideas: [
+      'uploaded pet as CEO at a boardroom table with charts, laptop and very serious executive mood',
+      'uploaded pet giving a funny business presentation on a giant screen with rising graph',
+      'uploaded pet sitting in an oversized office chair like the boss with skyline behind',
+      'uploaded pet signing important papers with tiny glasses and dramatic corporate lighting',
+      'uploaded pet in a power pose in a modern office lounge with coffee and laptop'
+    ]
+  },
+  {
+    id: 'knight',
+    title: 'Medieval Knight',
+    subtitle: 'armor, castles and epic fantasy scenes',
+    emoji: '⚔️',
+    sampleAnimal: '🦦',
+    sampleBg: 'linear-gradient(135deg,#1f2937,#64748b 50%,#cbd5e1)',
+    example: 'A ferret in tiny armor riding toward a castle gate.',
+    ideas: [
+      'uploaded pet wearing tiny knight armor standing before a huge castle gate, epic but funny',
+      'uploaded pet charging heroically across a medieval tournament field with banners flying',
+      'uploaded pet in a stone castle hall with armor, torchlight and fantasy adventure mood',
+      'uploaded pet looking brave beside a friendly dragon silhouette in a bright fantasy landscape',
+      'uploaded pet as a royal knight portrait with shield, cape and castle window light'
+    ]
+  }
 ];
 
-export function getScene(id:string){return scenes.find(s=>s.id===id)||scenes[0]}
-export function pickVariation(sceneId:string,index=0){const s=getScene(sceneId);const salt=Date.now()+Math.floor(Math.random()*100000)+index*997;return s.variations[salt%s.variations.length]}
-export function buildPrompt(sceneId:string,index=0){
- const s=getScene(sceneId); const variation=pickVariation(sceneId,index);
- const angles=['different camera angle, natural candid composition','close portrait with cinematic background depth','wide environmental shot, pet clearly visible','playful editorial photography composition','premium lifestyle photography angle','slightly low camera angle, heroic but natural'];
- const moods=['warm cinematic lighting','bright cheerful daylight','soft premium editorial light','cozy atmospheric glow','colorful joyful mood','luxury professional photography look'];
- const angle=angles[(Date.now()+index*13+Math.floor(Math.random()*99))%angles.length];
- const mood=moods[(Date.now()+index*17+Math.floor(Math.random()*99))%moods.length];
- return `The exact pet from the uploaded photo is placed in this scene: ${variation}.
-Keep the same pet identity, same face, same eyes, same expression, same fur color, same markings and recognizable personality.
-Do not turn the pet into a different animal or breed. Create a new composition, not a repeated background.
-${angle}. ${mood}. Professional high-quality realistic image. Scene category: ${s.title}.`;
+export function getScene(id: string) {
+  return scenes.find((s) => s.id === id) || scenes[0];
+}
+
+function pick<T>(arr: T[], index = 0, offset = 0): T {
+  return arr[(index + offset) % arr.length];
+}
+
+export function buildPrompt(sceneId: string, index = 0) {
+  const scene = getScene(sceneId);
+  const idea = pick(scene.ideas, index, Math.floor(Math.random() * scene.ideas.length));
+
+  const cameraAngles = [
+    'cinematic low angle, not centered like a passport photo',
+    'wide action shot with the full body visible',
+    'dynamic side angle with motion and environment interaction',
+    'movie-poster composition with dramatic perspective',
+    'playful editorial photography composition'
+  ];
+
+  const lighting = [
+    'bright cheerful daylight, visible face and clear eyes',
+    'high exposure cinematic lighting, no dark shadows on the pet',
+    'vibrant colorful commercial lighting',
+    'soft premium studio-style light mixed with bright background',
+    'warm cinematic light but still bright and readable'
+  ];
+
+  return `
+Use the uploaded pet photo as the identity reference, but create a NEW funny scene and NEW pose.
+
+SCENE IDEA:
+${idea}.
+
+IDENTITY RULES:
+Keep the same recognizable uploaded animal identity: same species, same breed/type, same face, same eyes, same nose/beak, same ears, same fur/feather color and markings. Do not replace it with a generic dog or cat. Do not change the pet into a human.
+
+POSE RULES:
+The pose MUST be different from the uploaded photo when the scene asks for action. It may stand, jump, fly, float, run, lie down, swing, look sideways or interact with objects. Do NOT preserve the original sitting pose unless the chosen idea specifically requires sitting.
+
+COMPOSITION RULES:
+Every preview must feel like a different photo: different body position, different camera angle, different framing, different background and different interaction with the environment.
+
+CAMERA:
+${pick(cameraAngles, index, Math.floor(Math.random() * cameraAngles.length))}.
+
+LIGHTING:
+${pick(lighting, index, Math.floor(Math.random() * lighting.length))}.
+
+QUALITY:
+Premium photorealistic pet art, sharp eyes, detailed fur, bright image, playful commercial look, funny but realistic.
+
+NEGATIVE INSTRUCTIONS:
+Avoid static seated portraits. Avoid repeated same pose. Avoid centered passport photo. Avoid dark image. Avoid identical background. Avoid only changing the background. Avoid hiding the pet. Avoid blurry face.
+`;
 }

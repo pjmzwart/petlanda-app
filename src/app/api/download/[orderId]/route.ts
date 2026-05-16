@@ -10,6 +10,6 @@ export async function GET(req:NextRequest,{params}:{params:{orderId:string}}){
   const inputRes=await fetch(inputUrl); const inputBuffer=Buffer.from(await inputRes.arrayBuffer()); const inputMimeType=inputRes.headers.get('content-type')||'image/jpeg';
   const zip=new JSZip(); for(let i=0;i<count;i++){const img=await generatePetImage({inputBuffer,inputMimeType,sceneId,index:i+10,preview:false});zip.file(`petlanda-${sceneId}-${i+1}.jpg`,img);}
   const zipBuffer=await zip.generateAsync({type:'nodebuffer'});
-  return new NextResponse(zipBuffer,{headers:{'Content-Type':'application/zip','Content-Disposition':`attachment; filename="petlanda-${packageType}-${params.orderId}.zip"`}});
+  return new NextResponse(new Uint8Array(zipBuffer),{headers:{'Content-Type':'application/zip','Content-Disposition':`attachment; filename="petlanda-${packageType}-${params.orderId}.zip"`}});
  }catch(error:any){console.error(error);return NextResponse.json({error:error?.message||'Download generation failed'},{status:500})}
 }

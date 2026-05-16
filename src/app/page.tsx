@@ -9,7 +9,7 @@ export default function Home() {
   const previewSectionRef = useRef<HTMLElement | null>(null);
 
   const [file, setFile] = useState<File | null>(null);
-  const [sceneId, setSceneId] = useState('restaurant');
+  const [sceneId, setSceneId] = useState('');
   const [loading, setLoading] = useState(false);
   const [previews, setPreviews] = useState<string[]>([]);
   const [orderId, setOrderId] = useState('');
@@ -61,6 +61,11 @@ export default function Home() {
   async function generate() {
     if (!file) {
       setError('Please upload a pet photo first.');
+      return;
+    }
+
+    if (!sceneId) {
+      setError('Please choose a scene first.');
       return;
     }
 
@@ -188,9 +193,11 @@ export default function Home() {
 
             {file && (
               <div style={{ marginTop: 14, display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                <button type="button" className="btn" onClick={generate} disabled={loading}>
-                  {loading ? 'Creating previews...' : previews.length ? 'Create new previews with same photo' : 'Create previews'}
-                </button>
+                {sceneId && (
+                  <button type="button" className="btn" onClick={generate} disabled={loading}>
+                    {loading ? 'Creating previews...' : previews.length ? 'Create new previews with same photo' : 'Create previews'}
+                  </button>
+                )}
                 <button type="button" className="btn" onClick={clearPhoto} disabled={loading}>
                   Remove photo
                 </button>

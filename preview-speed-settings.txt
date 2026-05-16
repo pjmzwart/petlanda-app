@@ -1,0 +1,12 @@
+
+PREVIEW SETTINGS
+
+Use:
+- 768x768 previews
+- 16-20 steps
+- compressed jpg
+- parallel generation
+
+Only HD after payment:
+- 1536x1536
+- 40+ steps

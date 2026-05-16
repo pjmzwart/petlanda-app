@@ -1,13 +1,16 @@
 
-PETLANDA ANIMAL PROMPT UPGRADE
+PETLANDA ACTION UPGRADE
 
-WHAT CHANGED:
-- No more hardcoded dog prompts
-- Fully animal-based prompts
-- Better superhero actions
-- Better creative variation
-- Stronger watermark
-- Faster preview recommendations
-- Negative prompts added
+Fixes:
+- static poses
+- repeated sitting
+- boring compositions
+- weak superhero scenes
 
-The AI now creates ACTION scenes instead of static portraits.
+Adds:
+- flying poses
+- action poses
+- jungle swinging
+- rooftop scenes
+- stronger watermark
+- brighter previews

@@ -208,11 +208,11 @@ export default function Home() {
                   }}
                   disabled={loading}
                 >
-                  <div className="scene-img" style={{ background: s.sampleBg }}>{s.sampleAnimal}</div>
-                  <div className="scene-body">
+                  <div className="scene-img">
+                    <img src={s.image} alt={s.title} />
+                  </div>
+                  <div className="scene-body compact">
                     <div className="scene-title">{s.emoji} {s.title}</div>
-                    <div className="scene-sub">{s.subtitle}</div>
-                    <div className="scene-example">{s.example}</div>
                   </div>
                 </button>
               ))}

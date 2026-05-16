@@ -20,6 +20,7 @@ export type Scene = {
   sampleAnimal: string;
   sampleBg: string;
   example: string;
+  image: string;
   ideas: string[];
 };
 
@@ -32,6 +33,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐩',
     sampleBg: 'linear-gradient(135deg,#27120f,#7c2d12 45%,#f59e0b)',
     example: 'A poodle in a tuxedo at a candlelit VIP table.',
+    image: '/examples/luxury-restaurant.jpg',
     ideas: [
       'uploaded pet sitting like a VIP guest at a candlelit fine dining table while a waiter presents a tiny gourmet plate',
       'uploaded pet standing proudly on a red restaurant chair in a luxury rooftop restaurant with city lights behind',
@@ -48,6 +50,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐱',
     sampleBg: 'linear-gradient(135deg,#0891b2,#38bdf8 45%,#fde68a)',
     example: 'A cat with sunglasses surfing a tiny wave.',
+    image: '/examples/beach-vacation.jpg',
     ideas: [
       'uploaded pet riding a surfboard on a bright tropical wave with sunglasses and splashing water',
       'uploaded pet relaxing like a celebrity on a beach chair with a coconut drink and palm trees',
@@ -64,6 +67,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐰',
     sampleBg: 'linear-gradient(135deg,#020617,#1d4ed8 50%,#93c5fd)',
     example: 'A rabbit floating in zero gravity with carrots around it.',
+    image: '/examples/astronaut.jpg',
     ideas: [
       'uploaded pet floating in zero gravity inside a spaceship, toys and snacks drifting around, Earth visible through the window',
       'uploaded pet wearing a cute space helmet jumping on the moon with Earth huge and bright in the background',
@@ -80,6 +84,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐹',
     sampleBg: 'linear-gradient(135deg,#3b2300,#92400e 55%,#facc15)',
     example: 'A hamster with a tiny crown on a giant golden throne.',
+    image: '/examples/king-throne.jpg',
     ideas: [
       'uploaded pet wearing a tiny crown while standing proudly on a palace balcony with a fantasy castle behind',
       'uploaded pet walking through a huge medieval castle hall with royal banners and bright golden light',
@@ -96,6 +101,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐶',
     sampleBg: 'linear-gradient(135deg,#14532d,#991b1b 50%,#fbbf24)',
     example: 'A puppy tangled in Christmas lights.',
+    image: '/examples/cozy-christmas.jpg',
     ideas: [
       'uploaded pet tangled in colorful Christmas lights next to a huge decorated tree, funny and bright',
       'uploaded pet popping out of a giant gift box in a cozy Christmas room with fireplace',
@@ -112,6 +118,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐈‍⬛',
     sampleBg: 'linear-gradient(135deg,#172554,#dc2626 58%,#facc15)',
     example: 'A black cat flying over the city with one paw forward.',
+    image: '/examples/superhero.jpg',
     ideas: [
       'uploaded pet flying through the air like a superhero with one paw forward, red cape waving strongly in the wind, bright city below',
       'uploaded pet standing heroically on back legs on top of a skyscraper, cape blowing, proud action movie poster pose',
@@ -128,6 +135,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐕',
     sampleBg: 'linear-gradient(135deg,#4c1d95,#be185d 55%,#f9a8d4)',
     example: 'A dachshund with a beret eating a croissant.',
+    image: '/examples/paris-cafe.jpg',
     ideas: [
       'uploaded pet wearing a tiny beret at a Paris café table with croissant and Eiffel Tower behind',
       'uploaded pet proudly guarding a plate of macarons on a sunny Paris terrace',
@@ -144,6 +152,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐦',
     sampleBg: 'linear-gradient(135deg,#111827,#475569 52%,#fb923c)',
     example: 'A bulldog in a chef hat after a flour explosion.',
+    image: '/examples/chef-kitchen.jpg',
     ideas: [
       'uploaded pet wearing a chef hat in a bright kitchen while flour explodes everywhere, funny cooking chaos',
       'uploaded pet proudly presenting a tiny gourmet meal on a silver plate like a master chef',
@@ -160,6 +169,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐕',
     sampleBg: 'linear-gradient(135deg,#075985,#0ea5e9 52%,#f8fafc)',
     example: 'A retriever with sunglasses on a yacht deck.',
+    image: '/examples/yacht-adventure.jpg',
     ideas: [
       'uploaded pet wearing sunglasses on a luxury yacht deck with wind in fur and blue sea behind',
       'uploaded pet standing at the yacht steering wheel like a tiny captain in bright sunlight',
@@ -176,6 +186,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🦉',
     sampleBg: 'linear-gradient(135deg,#2e1065,#7e22ce 55%,#fbbf24)',
     example: 'An owl casting a spell in a floating-book library.',
+    image: '/examples/wizard-school.jpg',
     ideas: [
       'uploaded pet casting a glowing spell in a magical library with floating books and candles',
       'uploaded pet wearing a tiny wizard hat in an enchanted castle classroom with potions',
@@ -192,6 +203,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🐹',
     sampleBg: 'linear-gradient(135deg,#111827,#334155 50%,#38bdf8)',
     example: 'A guinea pig as CEO with charts and tiny glasses.',
+    image: '/examples/business-meeting.jpg',
     ideas: [
       'uploaded pet as CEO at a boardroom table with charts, laptop and very serious executive mood',
       'uploaded pet giving a funny business presentation on a giant screen with rising graph',
@@ -208,6 +220,7 @@ export const scenes: Scene[] = [
     sampleAnimal: '🦦',
     sampleBg: 'linear-gradient(135deg,#1f2937,#64748b 50%,#cbd5e1)',
     example: 'A ferret in tiny armor riding toward a castle gate.',
+    image: '/examples/medieval-knight.jpg',
     ideas: [
       'uploaded pet wearing tiny knight armor standing before a huge castle gate, epic but funny',
       'uploaded pet charging heroically across a medieval tournament field with banners flying',

@@ -1,31 +1,13 @@
 
-PETLANDA MEGA VARIATION UPGRADE
+PETLANDA ANIMAL PROMPT UPGRADE
 
-WHAT THIS FIXES:
-- Much more variation between photos
-- Different poses
-- Different locations
-- Different camera angles
-- Different lighting
-- Brighter images
-- More cinematic compositions
-- Better watermark protection
-- Same dog consistency improved
+WHAT CHANGED:
+- No more hardcoded dog prompts
+- Fully animal-based prompts
+- Better superhero actions
+- Better creative variation
+- Stronger watermark
+- Faster preview recommendations
+- Negative prompts added
 
-IMPORTANT:
-Each generated image now uses RANDOM combinations.
-
-This prevents:
-- same pose
-- same cape shape
-- same background
-- same composition
-- boring repeated images
-
-FILES:
-- scene-data.js
-- prompt-generator.js
-- watermark.js
-
-INSTALL:
-Replace your old prompt system with these files.
+The AI now creates ACTION scenes instead of static portraits.

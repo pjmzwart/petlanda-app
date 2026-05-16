@@ -1,0 +1,15 @@
+
+PREVIEW OPTIMIZATION
+
+For previews use:
+- 768x768
+- 16 to 20 steps
+- medium quality
+- compressed output
+
+Only HD images after payment:
+- 1536x1536
+- 40+ steps
+- max quality
+
+Generate previews in parallel using Promise.all().

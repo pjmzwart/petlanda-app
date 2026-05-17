@@ -7,3 +7,14 @@
 }
 
 .scene-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+
+/* Clean photographic scene cards */
+.scenes{gap:14px}
+.scene{background:#fff;border-radius:18px;overflow:hidden;border:2px solid rgba(255,255,255,.9)}
+.scene.active{outline:3px solid #fbbf24;transform:translateY(-2px)}
+.scene-img{height:150px;background:#111827;overflow:hidden}
+.scene-img img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02)}
+.scene-body.compact{padding:12px 8px;min-height:58px;background:#fff}
+.scene-title{font-size:15px;font-weight:950;line-height:1.05;color:#111827;text-align:center}
+.scene-sub,.scene-example{display:none!important}

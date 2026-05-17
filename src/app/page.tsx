@@ -212,7 +212,7 @@ export default function Home() {
                     <img src={s.image} alt={s.title} />
                   </div>
                   <div className="scene-body compact">
-                    <div className="scene-title">{s.emoji} {s.title}</div>
+                    <div className="scene-title">{s.title}</div>
                   </div>
                 </button>
               ))}
